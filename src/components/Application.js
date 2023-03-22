@@ -7,7 +7,7 @@ import Appointment from './Appointment';
 
 
 //Import helpers
-import { getAppointmentsForDay, getInterview } from '../helpers/selectors';
+import { getAppointmentsForDay, getInterviewersForDay, getInterview } from '../helpers/selectors';
 
 // Import CSS
 import "components/Application.scss";
@@ -56,6 +56,7 @@ import "components/Application.scss";
 
 
 export default function Application(props) {
+  // State management
   const [state, setState] = useState({
     days: [],
     day: 'Monday',
@@ -64,7 +65,6 @@ export default function Application(props) {
   });
 
   const setDay = (day) => setState({ ...state, day });
-
 
   useEffect(() => {
     Promise.all([
@@ -81,6 +81,7 @@ export default function Application(props) {
 
 
   let dailyAppointments = getAppointmentsForDay(state, state.day);
+  let interviewers = getInterviewersForDay(state, state.day);
   const scheduleArr = dailyAppointments.map((appointment) => {
     const interview = getInterview(state, appointment.interview);
 
@@ -89,6 +90,8 @@ export default function Application(props) {
       id={appointment.id}
       time={appointment.time}
       interview={interview}
+      interviewers={interviewers}
+
     />;
   });
 
