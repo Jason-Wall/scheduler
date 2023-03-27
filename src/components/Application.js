@@ -79,9 +79,49 @@ export default function Application(props) {
 
 
 
-
+  // Supporting Data
   let dailyAppointments = getAppointmentsForDay(state, state.day);
   let interviewers = getInterviewersForDay(state, state.day);
+
+
+
+  //Supporting Functions
+
+  function bookInterview(id, interview) {
+
+    const appointment = {
+      ...state.appointments[id],
+      interview: { ...interview }
+    };
+
+    const appointments = {
+      ...state.appointments,
+      [id]: appointment
+    };
+
+    return (axios.put(`http://localhost:8001/api/appointments/${id}`, appointment)
+      .then(
+        () => setState({ ...state, appointments })
+      ));
+  };
+
+  function cancelInterview(id) {
+    const appointment = {
+      ...state.appointments[id],
+      interview: null
+    };
+
+    const appointments = {
+      ...state.appointments,
+      [id]: appointment
+    };
+
+    return (axios.delete(`http://localhost:8001/api/appointments/${id}`)
+      .then(
+        () => setState({ ...state, appointments })
+      ));
+  };
+
   const scheduleArr = dailyAppointments.map((appointment) => {
     const interview = getInterview(state, appointment.interview);
 
@@ -91,11 +131,15 @@ export default function Application(props) {
       time={appointment.time}
       interview={interview}
       interviewers={interviewers}
+      bookInterview={bookInterview}
+      cancelInterview={cancelInterview}
 
     />;
   });
 
 
+
+  //Component
   return (
     <main className="layout">
       <section className="sidebar">

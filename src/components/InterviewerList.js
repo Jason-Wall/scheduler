@@ -1,5 +1,4 @@
 import React from 'react';
-import classNames from 'classnames';
 
 import InterviewerListItem from './InterviewerListItem';
 
@@ -10,6 +9,7 @@ export default function InterviewerList(props) {
 
   const interviewerItems = props.interviewers.map((interviewer) => {
     return <InterviewerListItem
+      key={interviewer.name}
       name={interviewer.name}
       avatar={interviewer.avatar}
       selected={props.value === interviewer.id}
