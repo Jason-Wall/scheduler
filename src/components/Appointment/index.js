@@ -10,6 +10,7 @@ import Empty from './Empty';
 import Form from './Form';
 import Status from './Status';
 import Confirm from './Confirm';
+import Error from './Error';
 
 //CSS
 import './styles.scss';
@@ -22,6 +23,8 @@ const SAVING = 'Saving';
 const EDIT = 'Edit';
 const DELETECONFIRM = 'Confirm';
 const DELETING = 'Deleting';
+const ERROR_SAVE = 'Error Saving';
+const ERROR_DELETE = 'Error Deleting';
 
 
 export default function Appointment(props) {
@@ -35,9 +38,10 @@ export default function Appointment(props) {
       student: name,
       interviewer
     };
-    transition(SAVING);
+    transition(SAVING, true);
     props.bookInterview(props.id, interview)
-      .then(() => transition(SHOW));
+      .then(() => transition(SHOW))
+      .catch((error) => transition(ERROR_SAVE, true));
   }
 
   function onEdit() {
@@ -49,15 +53,16 @@ export default function Appointment(props) {
   }
 
   function deleteConfirm() {
-    transition(DELETING);
+    transition(DELETING, true);
     props.cancelInterview(props.id)
-      .then(() => transition(EMPTY));
+      .then(() => transition(EMPTY))
+      .catch((error) => transition(ERROR_DELETE, true));
   }
 
 
   // JSX
   return (
-    <article className="appointment"> <Header time={props.time} />
+    <article className="appointment" data-testid="appointment"> <Header time={props.time} />
       {mode === EMPTY && <Empty
         onAdd={() => transition(CREATE)} />}
 
@@ -94,6 +99,18 @@ export default function Appointment(props) {
         message={'Are you sure you want to delete this appointment?'}
         onCancel={() => back()}
         onConfirm={() => deleteConfirm()} />}
+
+      {mode === ERROR_DELETE && <Error
+        message={'Could not cancel your appointment'}
+        onClose={() => back()}
+      />
+      }
+
+      {mode === ERROR_SAVE && <Error
+        message={'Could not save your appointment'}
+        onClose={() => back()}
+      />
+      }
 
 
     </article>
