@@ -1,7 +1,7 @@
 # Interview Scheduler
 
 Interview Scheduler is a single page application that allows students to book appointments with mentors.\
-This project was built over one week as a project for Lighthouse Labs (LHL). Students were required to build and test React components using Jest and Cypress. The back end was provided by LHL ([Original Repo](https://github.com/lighthouse-labs/scheduler/)).
+This project was built over one week as a project for Lighthouse Labs (LHL). Students were required to create React components and test them using Cypress, Storybook, and Jest. The back end was provided by LHL ([Original Repo](https://github.com/lighthouse-labs/scheduler/)).
 
 ## Highlights
 
