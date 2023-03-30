@@ -4,7 +4,6 @@ import axios from 'axios';
 
 // State management
 export default function useApplicationData() {
-  // const firstRender = useRef(true);
   const [state, setState] = useState({
     days: [],
     day: 'Monday',
@@ -12,6 +11,7 @@ export default function useApplicationData() {
     interviewers: {}
   });
 
+  //Requests for data on first load.
   useEffect(() => {
     Promise.all([
       axios.get('/api/days'),
@@ -23,7 +23,7 @@ export default function useApplicationData() {
       });
   }, []);
 
-
+  // Update spots for all days
   useEffect(() => {
     setState(prev => ({ ...prev, days: updateSpots(prev.days, prev.appointments) }));
   }, [state.appointments]);
@@ -31,8 +31,8 @@ export default function useApplicationData() {
   const setDay = (day) => setState({ ...state, day });
 
 
+  //Internal functions
   function bookInterview(id, interview) {
-
     const appointment = {
       ...state.appointments[id],
       interview: { ...interview }
@@ -66,7 +66,6 @@ export default function useApplicationData() {
       ));
   };
 
-
   const updateSpots = (days, appointments) => {
     //Check edge cases, return early if no appointments
     if (Object.keys(appointments).length === 0) {
@@ -88,8 +87,6 @@ export default function useApplicationData() {
     }
     return daysArr;
   };
-
-
 
   return {
     state,

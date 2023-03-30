@@ -1,6 +1,5 @@
 import { useState } from 'react';
 
-
 const useVisualMode = (initial) => {
   const [mode, setMode] = useState(initial);
   const [history, setHistory] = useState([initial]);
@@ -22,8 +21,6 @@ const useVisualMode = (initial) => {
       setMode(dropLast[lastIndex]);
     }
   };
-
-
 
   return { mode, transition, back };
 };

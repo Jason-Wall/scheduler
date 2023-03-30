@@ -11,7 +11,6 @@ export const getAppointmentsForDay = (state, day) => {
     return state.appointments[apptId];
   });
 
-
   return apptArr;
 };
 
@@ -28,14 +27,8 @@ export const getInterviewersForDay = (state, day) => {
     return state.interviewers[intId];
   });
 
-
   return intArr;
 };
-
-
-
-
-
 
 
 export const getInterview = (state, interview) => {

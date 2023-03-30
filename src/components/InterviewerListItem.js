@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import classNames from 'classnames';
 
 import './InterviewerListItem.scss';
@@ -19,7 +19,7 @@ export default function InterviewerListItem(props) {
   return (
     <li className={classes} onClick={props.onChange}>
       <img
-        className="interviewers__item-image"
+        className='interviewers__item-image'
         src={props.avatar}
         alt={props.name}
       />

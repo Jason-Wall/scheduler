@@ -1,7 +1,6 @@
 import React from "react";
 
 import {
-  prettyDOM,
   render,
   cleanup,
   waitForElement,
@@ -33,9 +32,8 @@ describe('Application', () => {
     expect(getByText("Leopold Silvers")).toBeInTheDocument();
   });
 
-
   it("loads data, books an interview and reduces the spots remaining for the first day by 1", async () => {
-    const { container, debug } = render(<Application />);
+    const { container } = render(<Application />);
     await waitForElement(() => getByText(container, "Archie Cohen"));
     const appointments = getAllByTestId(container, 'appointment');
     const appointment = appointments[0];
@@ -60,7 +58,7 @@ describe('Application', () => {
 
   it("loads data, cancels an interview and increases the spots remaining for Monday by 1", async () => {
     // Render page
-    const { container, debug } = render(<Application />);
+    const { container } = render(<Application />);
     await waitForElement(() => getByText(container, "Archie Cohen"));
 
     // Verify that one spot is available
@@ -90,7 +88,7 @@ describe('Application', () => {
 
   it("loads data, edits an interview and keeps the spots remaining for Monday the same", async () => {
     // Render Application
-    const { container, debug } = render(<Application />);
+    const { container } = render(<Application />);
     await waitForElement(() => getByText(container, "Archie Cohen"));
 
     // Verify that one spot is available
@@ -122,7 +120,7 @@ describe('Application', () => {
   it("shows the save error when failing to save an appointment", async () => {
     //Render Application
     axios.put.mockRejectedValueOnce();
-    const { container, debug } = render(<Application />);
+    const { container } = render(<Application />);
     await waitForElement(() => getByText(container, "Archie Cohen"));
     // Establish 'appointment' as a DOM variable for use throughout
     const appointments = getAllByTestId(container, 'appointment');
@@ -146,7 +144,7 @@ describe('Application', () => {
   it("shows the delete error when failing to delete an existing appointment", async () => {
     // Render Application
     axios.delete.mockRejectedValueOnce();
-    const { container, debug } = render(<Application />);
+    const { container } = render(<Application />);
     await waitForElement(() => getByText(container, "Archie Cohen"));
     // Establish 'appointment' as a DOM variable for use throughout
     const appointments = getAllByTestId(container, 'appointment');
