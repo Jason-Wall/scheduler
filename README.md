@@ -7,19 +7,19 @@ This project was built over one week as a project for Lighthouse Labs (LHL). Stu
 
 ### Create, Read, Update, Delete Appointments
 
-<img src=https://github.com/Jason-Wall/lhl-midterm/blob/master/documents/01_view_maps.gif/>
+<img src=https://github.com/Jason-Wall/scheduler/blob/master/documents/01_App_Overview.gif/>
 
 ### Integration Testing in Cypress
 
-<img src=https://github.com/Jason-Wall/lhl-midterm/blob/master/documents/01_view_maps.gif/>
+<img src=https://github.com/Jason-Wall/scheduler/blob/master/documents/02_Cypress.png/>
 
 ### Regression and Unit Testing in Jest
 
-<img src=https://github.com/Jason-Wall/lhl-midterm/blob/master/documents/01_view_maps.gif/>
+<img src=https://github.com/Jason-Wall/scheduler/blob/master/documents/03_Jest.png/>
 
 ### UI Testing in Storybook (UI)
 
-<img src=https://github.com/Jason-Wall/lhl-midterm/blob/master/documents/01_view_maps.gif/>
+<img src=https://github.com/Jason-Wall/scheduler/blob/master/documents/04_Storybook.gif/>
 
 ## Getting Started
 
@@ -28,7 +28,7 @@ This project was built over one week as a project for Lighthouse Labs (LHL). Stu
 
 ### Database
 
-The database for this project is forked from:
+The database for this project runs in PostgreSQL and is forked from:
 [https://github.com/lighthouse-labs/scheduler-api](https://github.com/lighthouse-labs/scheduler-api)
 
 ### Dependencies
@@ -61,9 +61,17 @@ The database for this project is forked from:
   }
 ```
 
+### Run Scheduler-Api
+
+Refer to [Scheduler-Api README](<(https://github.com/lighthouse-labs/scheduler-api)>) for instructions on setting up and running the database. This is critical for the application to run.
+
 ### Running Webpack Development Server
 
 `npm start`
+
+### Running Cypress Testing Suites
+
+`npm run cypress`
 
 ### Running Jest Test Framework
 
