@@ -6,10 +6,16 @@ const useVisualMode = (initial) => {
 
   const transition = (nextMode, replace = false) => {
     if (replace) {
-      setHistory([...history.slice(0, -1), nextMode]);
+      setHistory((prev => {
+        const newHistory = [...prev];
+        return [...newHistory];
+      }));
     } else {
-      setHistory([...history, nextMode]);
-    }
+      setHistory((prev => {
+        const newHistory = [...prev];
+        return [...newHistory, nextMode];
+      }));
+    };
     setMode(nextMode);
   };
 
