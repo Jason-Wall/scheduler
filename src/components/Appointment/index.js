@@ -49,7 +49,7 @@ export default function Appointment(props) {
   }
 
   function onDelete() {
-    transition(DELETECONFIRM);
+    transition(DELETECONFIRM, true);
   }
 
   function deleteConfirm() {
